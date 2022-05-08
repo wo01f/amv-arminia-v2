@@ -8,6 +8,10 @@ html, body, main {
     height: 100%;
 }
 
+button.btn-primary {
+    color: white;
+}
+
 #banner {
     position: relative;
     padding-top: 15%;
@@ -32,17 +36,17 @@ html, body, main {
         text-shadow: 1px 1px #000000;
     }
 
-    hr {
-        max-width: 50px;
-        border-width: 3px;
-        margin: 30px auto;
-        border-top: 6px solid #f05f40;
-        opacity: 1;
-    }
-    button {
-        color: white;
-    }
 
+
+
+}
+
+hr {
+    max-width: 50px;
+    border-width: 3px;
+    margin: 30px auto;
+    border-top: 6px solid #f05f40;
+    opacity: 1;
 }
 
 .bg-primary {
@@ -74,4 +78,8 @@ html, body, main {
     margin-left: -125px;
     background-repeat: no-repeat;
     margin-top: -250px;
+}
+
+.card-text {
+    font-size: 1rem;
 }

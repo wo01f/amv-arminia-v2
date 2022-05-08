@@ -41,8 +41,8 @@
         </div>
 
         <div class="container-fluid" id="#house">
-            <div class="row col-lg-8 mx-auto">
-                <h1 class="text-center">Das Haus</h1>
+            <div class="text-center px-4 py-5">
+                <h1 class="display-5 fw-bold">Das Haus</h1>
                 <hr/>
             </div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-1 col-lg-8 mx-auto">
@@ -107,7 +107,14 @@
                     </div>
                 </div>
             <div class="row col-lg-8 mx-auto text-center mt-4">
-                <h3 class="text-center">Wir vergeben zu jedem Semester einige Zimmer.</h3>
+                <h3 class="text-center py-4">Wir vergeben zu jedem Semester einige Zimmer.</h3>
+                <p class="lead">
+                    Unser Haus bietet mit seiner Lage einen direkten Zugang zu der Oker, eine unschlagbare Nähe zum Campus und einen Anschluss zur Straßenbahn.
+                    Außerdem verfügt es über einen gemeinsamen Garten der sich hervorragend für Grill-Partys oder eine Weinverkostung eignet, sowie eine große Küche, einen Saal zum Lernen und Musizieren als auch ein Wohnzimmer um einfach nur zu enstpannen.
+
+                    Die Zimmer sind bis zu 25qm groß und studentenfreundlich günstig gehalten.
+                </p>
+
                 <a href="#contact"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Ruf an & vereinbare einen Termin!</button></a>
             </div>
         </div>
@@ -129,7 +136,12 @@
                     <div class="row featurette">
                         <div class="col-md-7">
                             <h2 class="featurette-heading">Kontaktiere uns!<span class="text-muted">&nbsp;Wir schlagen nicht.</span></h2>
-                            <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+                            <p class="lead">Wenn wir dein Interesse geweckt haben, dann melde dich gerne bei uns, oder komm am besten einfach mal vorbei!
+                                Zu finden sind wir am folgenden Standort:<br>
+<br>
+                                Am Wendenwehr 9<br>
+                                38114, Braunschweig<br>
+                                Deutschland</p>
                         </div>
                         <div class="col-md-5 px-5">
                             <h3><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-telephone-forward-fill" viewBox="0 0 16 16">
