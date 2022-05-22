@@ -19,5 +19,15 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+
+
+Route::put('/admin/roles', [App\Http\Controllers\AdminController::class, 'roles']);
+Route::put('/admin/events', [App\Http\Controllers\AdminController::class, 'events']);
+Route::get('/admin/events/delete/{event}', [App\Http\Controllers\AdminController::class, 'events_delete']);
+Route::get('/admin/events/edit/{event}', [App\Http\Controllers\AdminController::class, 'events_edit']);
+Route::patch('/admin/events/edit/{event}',[App\Http\Controllers\AdminController::class, 'events_update']);
+
+
 Auth::routes();
 

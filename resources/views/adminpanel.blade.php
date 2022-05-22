@@ -1,57 +1,115 @@
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand page-scroll" href="#page-top">AMV Arminia</a>
-        </div>
+@extends('layouts.app')
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" href="#about">Über uns</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#services">Kalender</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#geschichte">Geschichte</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#haus">Das Haus</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Kontakt</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="index.php?p=datenschutz" >Datenschutz</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="impressum.html" target="_blank">Impressum</a>
-                </li>
-            </ul>
+@section('content')
+
+    <div class="container-fluid" id="contact">
+
+
+
+        <div class="row col-lg-6 mx-auto">
+            <div class="px-4 py-5 my-5">
+                @if (session('status'))
+                    <div class="alert alert-success alert-block">
+                        <strong>{{ session('status') }}</strong>
+                    </div>
+                @endif
+                <div class="row py-5 my-5">
+                    <div class="col-12">
+                        <h1>Veranstaltungskalender</h1>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Start</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Typ</th>
+                                    <th scope="col">Bearbeiten</th>
+                                    <th scope="col">Löschen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($events as $event)
+                                <tr>
+                                    <td>{{$event->start->format('d.m.Y H:i')}}</td>
+                                    <td>{{$event->name}}</td>
+                                    <td>{{$event->type_translated()}}</td>
+                                    <td><a href="admin/events/edit/{{$event->id}}"><div class="btn btn-warning">Bearbeiten</div></a></td>
+                                    <td><a href="admin/events/delete/{{$event->id}}"><div class="btn btn-danger">Löschen</div></a></td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form method="post" action="/admin/events">
+                                @csrf
+                                @method('PUT')
+                                <h2>Veranstaltung einstellen</h2>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name der Veranstaltung</label>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="start_date" class="form-label">Datum der Veranstaltung</label>
+                                    <input type="date" class="form-control" name="start_date" id="start_date" placeholder="">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="start_time" class="form-label">Uhrzeit der Veranstaltung</label>
+                                    <input type="time" class="form-control" name="start_time" id="start_time" placeholder="">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="type" class="form-label">Art der Veranstaltung</label>
+                                    <select class="form-select" name="type" id="type" aria-label="">
+                                        <option selected value="1">Intern</option>
+                                        <option value="2">Mit Anmeldung</option>
+                                        <option value="3">Öffentlich</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Beschreibung der Veranstaltung <small>(Kann leer gelassen werden)</small></label>
+                                    <textarea class="form-control" name="description" id="description" rows="4"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Veranstaltung erstellen</button>
+                            </form>
+                        </div>
+                        <div class="col-lg-6">
+                            <form method="post" action="/admin/roles">
+                                @csrf
+                                @method('PUT')
+                                <h2>Ämter einstellen</h2>
+                                <div class="mb-3">
+                                    <label for="role_x" class="form-label">Präside</label>
+                                    <input type="text" class="form-control" name="x" id="role_x" value="{{$x}}" placeholder="Janek v. W.">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="role_xx" class="form-label">Schriftwart</label>
+                                    <input type="text" class="form-control" name="xx" id="role_xx" value="{{$xx}}" placeholder="Katharina W.">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="role_xxx" class="form-label">Kassenwart</label>
+                                    <input type="text" class="form-control" id="role_xxx" name="xxx" value="{{$xxx}}" placeholder="Dotti B.">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="role_xxxx" class="form-label">Fuxmajor</label>
+                                    <input type="text" class="form-control" id="role_xxxx" name="xxxx" value="{{$xxxx}}" placeholder="Laura K.">
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary">Ämter ändern</button>
+                            </form>
+                        </div>
+
+                    </div>
+
+
+
+
+            </div>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container-fluid -->
-</nav>
 
-<header>
-    <div class="header-content">
-        <div class="header-content-inner">
-            <h1 class="shadow">AMV Arminia im SV</h1>
-            <hr  class="shadow">
-            <p class="shadow">Akademisch Musische Vereinigung Arminia zu Braunschweig<br> im Sondershäuser Verband</p>
-            <a href="#about" class="btn btn-primary btn-xl page-scroll">Über uns</a>
-        </div>
-    </div>
-</header>
-
-
-
+@endsection
