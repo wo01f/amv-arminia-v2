@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Event;
+use App\Models\ReaccuringEvent;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -31,6 +33,8 @@ class AdminController extends Controller
             "xxx"=> Role::getXXX(),
             "xxxx"=> Role::getXXXX(),
             "events" => Event::all(),
+            "reaccuring_events" => ReaccuringEvent::all(),
+            "articles" => Article::all(),
         ]);
     }
 
@@ -96,6 +100,76 @@ class AdminController extends Controller
         $event->save();
 
         return redirect('admin')->with('status', 'Event "'.$name.'" bearbeitet.');
+
+    }
+
+
+    public function reaccuring_events(Request $request) {
+
+
+        $start = \DateTime::createFromFormat('Y-m-d H:i:s','2022-01-01 '.$request->get('start_time').':00');
+
+        $name = $request->get('name');
+
+        $event = new ReaccuringEvent([
+            'type' => $request->get('type'),
+            'name' => $name,
+            'description' => $request->get('description'),
+            'start' =>  $start
+        ]);
+
+        $event->save();
+
+        return redirect('admin')->with('status', 'Event "'.$name.'" angelegt');
+
+    }
+
+    public function reaccuring_events_delete(ReaccuringEvent $event) {
+
+        $name = $event->name;
+        $event->delete();
+
+        return redirect('admin')->with('status', 'Wöchentliches Event "'.$name.'" gelöscht');
+    }
+
+    public function reaccuring_events_edit(ReaccuringEvent $event) {
+
+        return view('reaccuring_event', [
+            "event" => $event,
+        ]);
+
+    }
+
+    public function reaccuring_events_update(Request $request, ReaccuringEvent $event) {
+        $start = \DateTime::createFromFormat('Y-m-d H:i:s','2022-01-01 '.$request->get('start_time').':00');
+        $name = $request->get('name');
+
+        $event->type = $request->get('type');
+        $event->name = $name;
+        $event->description = $request->get('description');
+        $event->start =  $start;
+        $event->save();
+
+        return redirect('admin')->with('status', 'Wöchentliches Event "'.$name.'" bearbeitet.');
+
+    }
+
+    public function article_edit(Article $article) {
+
+        return view('article', [
+            "article" => $article,
+        ]);
+
+    }
+
+    public function article_update(Request $request, Article $article) {
+        $name = $request->get('name');
+
+        $article->name = $name;
+        $article->description = $request->get('description');
+        $article->save();
+
+        return redirect('admin')->with('status', 'Wöchentliches Event "'.$name.'" bearbeitet.');
 
     }
 }

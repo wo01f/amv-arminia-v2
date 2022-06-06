@@ -16,17 +16,13 @@
 
                     <div class="row">
                         <div class="col-lg-6">
-                            <form method="post" action="/admin/events/edit/{{$event->id}}">
+                            <form method="post" action="/admin/reaccuring_events/edit/{{$event->id}}">
                                 @csrf
                                 @method('PATCH')
                                 <h2>Veranstaltung einstellen</h2>
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name der Veranstaltung</label>
                                     <input type="text" class="form-control" name="name" value="{{$event->name}}" id="name" placeholder="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="start_date" class="form-label">Datum der Veranstaltung</label>
-                                    <input type="date" class="form-control" value="{{$event->start->format('Y-m-d')}}" name="start_date" id="start_date" placeholder="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="start_time" class="form-label">Uhrzeit der Veranstaltung</label>

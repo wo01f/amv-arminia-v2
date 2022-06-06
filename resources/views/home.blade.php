@@ -8,6 +8,7 @@
     <main>
 
         <div class="px-4 text-center" id="banner">
+            <img src="/img/wappen.png">
             <h1 class="display-5 fw-bold my-5">AMV ARMINIA IM SV</h1>
             <hr/>
             <div class="col-lg-6 mx-auto">
@@ -21,17 +22,13 @@
             </div>
         </div>
 
-        <!-- Marketing messaging and featurettes
-        ================================================== -->
-        <!-- Wrap the rest of the page in another container to center all the content. -->
-
         <div class="container-fluid bg-primary" id="aboutus">
             <div class="px-4 py-5 text-center">
-                <h1 class="display-5 fw-bold">Wir sind Arminia!</h1>
+                <h1 class="display-5 fw-bold">{{$aboutus->name}}</h1>
                 <hr/>
                 <div class="col-lg-6 mx-auto">
                     <p class="lead mb-4">
-                        Bei der akademisch, musischen Vereinigung Arminia treffen sich sowohl Studenten als auch Studentinnen verschiedener Fachrichtungen, um sich gemeinsam musischen, kreativen und gemeinschaftlichen Interessen zu widmen. Neben unserem vierstimmigen Chor betreiben wir auch eine Theatergruppe. Spaß steht hierbei für uns im Vordergrund. Als zentraler Punkt dient unser Haus Am Wendenwehr 9, das durch große Räumlichkeiten und mit einem Garten zur Oker ausreichend Platz für die unterschiedlichsten Aktivitäten bietet. Ziel der Arminia ist es, die während des Studiums gewachsene Verbundenheit ihrer Mitglieder ein Leben lang aufrechtzuhalten. Wenn wir nun dein Interesse geweckt haben, bist du herzlich eingeladen, bei uns vorbeizuschauen. Wir freuen uns auf dich!
+                        {{$aboutus->description}}
                     </p>
                     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                         <a href="#history"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Weitere Infos</button></a>
@@ -39,6 +36,42 @@
                 </div>
             </div>
         </div>
+
+        <div class="container-fluid" id="events">
+            <div class="px-4 py-5 text-center">
+                <h1 class="display-5 fw-bold">Veranstaltungskalender</h1>
+                <hr/>
+                <div class="col-lg-6 mx-auto">
+                   <div class="row">
+                       <div class="col-lg-9">
+                           <div class="row">
+                           @foreach($events as $event)
+
+                               <div class="col-md-4">
+                                   <h2 class="featurette-heading">{{$event->name}}</h2>
+                                   <small>Am&nbsp;{{$event->start->format('d.m.Y')}} um {{$event->start->format('H:i')}} Uhr.</small>
+                                   <p>{{$event->description}}</p>
+                               </div>
+
+                           @endforeach
+                           </div>
+                       </div>
+                       <div class="col-lg-3 bg-primary px-4 py-5">
+                           <h5>Regelmäßige Termine</h5>
+                           @foreach($reaccuring_events as $reaccuring_event)
+
+                               <div class="col-md-12">
+                                   <p class="heading">{{$reaccuring_event->name}}: <span class="text-muted">{{$reaccuring_event->description}}</span></p>
+                               </div>
+
+                           @endforeach
+                       </div>
+
+                   </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="container-fluid" id="#house">
             <div class="text-center px-4 py-5">
@@ -107,12 +140,9 @@
                     </div>
                 </div>
             <div class="row col-lg-8 mx-auto text-center mt-4">
-                <h3 class="text-center py-4">Wir vergeben zu jedem Semester einige Zimmer.</h3>
+                <h3 class="text-center py-4">{{$rooms->name}}</h3>
                 <p class="lead">
-                    Unser Haus bietet mit seiner Lage einen direkten Zugang zu der Oker, eine unschlagbare Nähe zum Campus und einen Anschluss zur Straßenbahn.
-                    Außerdem verfügt es über einen gemeinsamen Garten der sich hervorragend für Grill-Partys oder eine Weinverkostung eignet, sowie eine große Küche, einen Saal zum Lernen und Musizieren als auch ein Wohnzimmer um einfach nur zu enstpannen.
-
-                    Die Zimmer sind bis zu 25qm groß und studentenfreundlich günstig gehalten.
+                    {{$rooms->description}}
                 </p>
 
                 <a href="#contact"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Ruf an & vereinbare einen Termin!</button></a>
@@ -121,11 +151,10 @@
 
         <div class="container-fluid bg-primary" id="history">
             <div class="px-4 py-5 my-5 text-center">
-                <h1 class="display-5 fw-bold">Unsere Geschichte</h1>
+                <h1 class="display-5 fw-bold">{{$history->name}}</h1>
                 <hr/>
                 <div class="col-lg-6 mx-auto">
-                    <p class="lead mb-4">
-                        Hervorgegangen aus dem 1896 gegründeten "Akademisch-Pharmazeutischen Kegelklub Carolo-Willhelmina" trat die Sängerschaft 1900 als "Akademisch-Pharmazeutischer Verein" ins Leben. Der Zirkel weist bis heute mit seinen Buchstaben "A", "Ph", und "V" noch auf die Entstehung hin. Mit dem Beitritt zum "Arnstädter Cartellverband" im Jahre 1909 nahm die Verbindung den Namen "Arminia" an. Die Zugehörigkeit zu diesem Verband endete 1913. Ein Jahr später, im Jahre 1914, trat die Arminia dem SV bei. Neben der Tatsache, dass die Verbindung nichtfarbentragend war, trug auch der Einfluss des SV-Ortsverbandes Braunschweig zu diesem Schritt bei. Nach dem ersten Weltkrieg konnte die musikalische Arbeit in der Verbindung, die zunehmend Angehörige aller Fakultäten umfasste, intensiviert werden. Der Auflösung der Korporationen fiel 1935 auch die Arminia zum Opfer. Der damalige Vorstand des Altherrenverbandes konnte den Bund aber im geheimen weiter zusammenhalten, wozu auch das Weitererscheinen des 1924 gegründete "Arminenblattes" bis 1944 beitrug. Einige Erinnerungsstücke, unter anderem auch die Arminen-Fahne, befinden sich heute in der Erinnerungsstätte des SV in Sondershausen. Nach dem Krieg fand 1949 in Vlotho das erste große Arminentreffen statt. Im Januar 1950 wurde die Verbindung zunächst als "Akademisch-Musikalische" wieder zur Hochschule zugelassen, nahm im Juli 1950 wieder den alten Namen "Arminia" an und 1952 dann die Bezeichnung "Sängerschaft". Seit 1973 lautet der offizielle Name "Akademisch-Musische Vereinigung (AMV) Arminia". 1954 erfolgte die Einweihung des ersten Arminenheims in der Spielmannstraße, 1977 bezog die Arminia ihr jetziges Domizil. 1987 entschloss sich die Aktivitas, auch Frauen aufzunehmen und gründete 1989 den "Verein Philistrierter Arminen (VPA)". 1989 sowie zuletzt 2013 stellte die Arminia den Vorsitz des Sondershäuser Verbands.                    </p>
+                    <p class="lead mb-4">{{$history->description}}</p>
                 </div>
             </div>
         </div>
@@ -157,12 +186,34 @@
             </div>
 
         </div>
+        <div class="container-fluid bg-primary" id="roles">
+            <div class="px-4 py-5 my-5 text-center">
+                <div class="col-lg-6 mx-auto">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <span>Präside</span>
+                            <h4>{{$x}}</h4>
+                            <small>x@amv-arminia.de</small>
+                        </div>
+                        <div class="col-lg-3">
+                            <span>Schriftwart</span>
+                            <h4>{{$xx}}</h4>
+                            <small>xx@amv-arminia.de</small>
+                        </div>
+                        <div class="col-lg-3">
+                            <span>Kassenwart</span>
+                            <h4>{{$xxx}}</h4>
+                            <small>xxx@amv-arminia.de</small>
+                        </div>
+                        <div class="col-lg-3">
+                            <span>Fuxmajor</span>
+                            <h4>{{$xxxx}}</h4>
+                            <small>xxxx@amv-arminia.de</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
-        <!-- FOOTER -->
-        <footer class="container">
-            <p class="float-end"><a href="#">Back to top</a></p>
-            <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-        </footer>
     </main>
 @endsection
