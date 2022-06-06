@@ -43,11 +43,11 @@
                 <hr/>
                 <div class="col-lg-6 mx-auto">
                    <div class="row">
-                       <div class="col-lg-9">
+                       <div class="col-md-10">
                            <div class="row">
                            @foreach($events as $event)
 
-                               <div class="col-md-4">
+                               <div class="col-md-4 px-4 py-4">
                                    <h2 class="featurette-heading">{{$event->name}}</h2>
                                    <small>Am&nbsp;{{$event->start->format('d.m.Y')}} um {{$event->start->format('H:i')}} Uhr.</small>
                                    <p>{{$event->description}}</p>
@@ -56,7 +56,7 @@
                            @endforeach
                            </div>
                        </div>
-                       <div class="col-lg-3 bg-primary px-4 py-5">
+                       <div class="col-md-2 bg-primary px-2 py-4">
                            <h5>Regelmäßige Termine</h5>
                            @foreach($reaccuring_events as $reaccuring_event)
 
