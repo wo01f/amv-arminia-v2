@@ -22,6 +22,38 @@
             </div>
         </div>
 
+        <div class="container-fluid" id="events">
+            <div class="px-4 py-5 ">
+                <h1 class="display-5 fw-bold text-center">Veranstaltungskalender</h1>
+                <hr/>
+                <div class="col-lg-6 mx-auto">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                @foreach($events as $event)
+                                    <p>
+                                        <strong>{{$event->name}}.</strong> {{$event->description}}<br>
+                                        <small>Am&nbsp;{{$event->start->format('d.m.Y')}} um {{$event->start->format('H:i')}} Uhr.</small>
+                                    </p>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="col-md-4 bg-primary px-4 py-4 text-center">
+                            <h5>Regelmäßige Termine</h5>
+                            @foreach($reaccuring_events as $reaccuring_event)
+
+                                <div class="col-md-12">
+                                    <p class="heading"><strong>{{$reaccuring_event->name}}:</strong> {{$reaccuring_event->description}}</p>
+                                </div>
+
+                            @endforeach
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container-fluid bg-primary" id="aboutus">
             <div class="px-4 py-5 text-center">
                 <h1 class="display-5 fw-bold">{{$aboutus->name}}</h1>
@@ -37,40 +69,7 @@
             </div>
         </div>
 
-        <div class="container-fluid" id="events">
-            <div class="px-4 py-5 text-center">
-                <h1 class="display-5 fw-bold">Veranstaltungskalender</h1>
-                <hr/>
-                <div class="col-lg-6 mx-auto">
-                   <div class="row">
-                       <div class="col-md-10">
-                           <div class="row">
-                           @foreach($events as $event)
 
-                               <div class="col-md-4 px-4 py-4">
-                                   <h2 class="featurette-heading">{{$event->name}}</h2>
-                                   <small>Am&nbsp;{{$event->start->format('d.m.Y')}} um {{$event->start->format('H:i')}} Uhr.</small>
-                                   <p>{{$event->description}}</p>
-                               </div>
-
-                           @endforeach
-                           </div>
-                       </div>
-                       <div class="col-md-2 bg-primary px-2 py-4">
-                           <h5>Regelmäßige Termine</h5>
-                           @foreach($reaccuring_events as $reaccuring_event)
-
-                               <div class="col-md-12">
-                                   <p class="heading">{{$reaccuring_event->name}}: <span class="text-muted">{{$reaccuring_event->description}}</span></p>
-                               </div>
-
-                           @endforeach
-                       </div>
-
-                   </div>
-                </div>
-            </div>
-        </div>
 
 
         <div class="container-fluid" id="#house">

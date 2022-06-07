@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/datasecurity', [App\Http\Controllers\HomeController::class, 'datasecurity'])->name('datasecurity');
 
+Route::get('/impress', [App\Http\Controllers\HomeController::class, 'impress'])->name('impress');
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 

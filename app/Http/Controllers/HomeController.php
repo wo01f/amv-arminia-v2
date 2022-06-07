@@ -42,4 +42,13 @@ class HomeController extends Controller
             'rooms' => Article::where('type', '3')->first(),
         ]);
     }
+
+    public function datasecurity() {
+        return view('datasecurity');
+    }
+
+    public function impress() {
+        return view('impress');
+    }
+
 }
